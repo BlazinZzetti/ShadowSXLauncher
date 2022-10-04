@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -8,6 +9,16 @@ namespace ShadowSXLauncher
 {
     public partial class SettingsDialog : Form
     {
+        private string sxPath
+        {
+            get { return Application.ExecutablePath.Replace("ShadowSXLauncher.exe", ""); }
+        }
+        
+        private string dolphinPath
+        {
+            get { return sxPath + @"\Dolphin-x64\Dolphin.exe"; }
+        }
+        
         public SettingsDialog()
         {
             InitializeComponent();
@@ -36,6 +47,12 @@ namespace ShadowSXLauncher
         {
             Configuration.Instance.UiButtonDisplayIndex = UiButtonDisplayComboBox.SelectedIndex;
             Configuration.Instance.SaveSettings();
+        }
+
+        private void ControllerSettingsButton_Click(object sender, EventArgs e)
+        {
+            //Open Dolphin for now.  A modified Dolphin with shortcuts will be available later.
+            Process.Start(dolphinPath);
         }
     }
 }

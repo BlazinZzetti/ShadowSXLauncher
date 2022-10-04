@@ -35,7 +35,6 @@ namespace ShadowSXLauncher
             this.ModernUIControlCheckBox = new System.Windows.Forms.CheckBox();
             this.UiButtonDisplayComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.GraphicsSettingsButton = new System.Windows.Forms.Button();
             this.ShadowColorButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -43,17 +42,18 @@ namespace ShadowSXLauncher
             // 
             this.ControllerSettingsButton.Location = new System.Drawing.Point(12, 71);
             this.ControllerSettingsButton.Name = "ControllerSettingsButton";
-            this.ControllerSettingsButton.Size = new System.Drawing.Size(95, 51);
-            this.ControllerSettingsButton.TabIndex = 0;
-            this.ControllerSettingsButton.Text = "Controller Settings (Dolphin)";
+            this.ControllerSettingsButton.Size = new System.Drawing.Size(196, 51);
+            this.ControllerSettingsButton.TabIndex = 2;
+            this.ControllerSettingsButton.Text = "Open Dolphin\r\n(Will be replaced with Controller and Graphics later)";
             this.ControllerSettingsButton.UseVisualStyleBackColor = true;
+            this.ControllerSettingsButton.Click += new System.EventHandler(this.ControllerSettingsButton_Click);
             // 
             // ModernUIControlCheckBox
             // 
             this.ModernUIControlCheckBox.Location = new System.Drawing.Point(12, 12);
             this.ModernUIControlCheckBox.Name = "ModernUIControlCheckBox";
             this.ModernUIControlCheckBox.Size = new System.Drawing.Size(193, 24);
-            this.ModernUIControlCheckBox.TabIndex = 1;
+            this.ModernUIControlCheckBox.TabIndex = 0;
             this.ModernUIControlCheckBox.Text = "Use Modern UI Control (Xbox Style)";
             this.ModernUIControlCheckBox.UseVisualStyleBackColor = true;
             this.ModernUIControlCheckBox.CheckedChanged += new System.EventHandler(this.ModernUIControlCheckBox_CheckedChanged);
@@ -64,7 +64,7 @@ namespace ShadowSXLauncher
             this.UiButtonDisplayComboBox.Location = new System.Drawing.Point(113, 42);
             this.UiButtonDisplayComboBox.Name = "UiButtonDisplayComboBox";
             this.UiButtonDisplayComboBox.Size = new System.Drawing.Size(121, 21);
-            this.UiButtonDisplayComboBox.TabIndex = 2;
+            this.UiButtonDisplayComboBox.TabIndex = 1;
             this.UiButtonDisplayComboBox.Text = "Steam Deck";
             this.UiButtonDisplayComboBox.SelectedValueChanged += new System.EventHandler(this.UiButtonDisplayComboBox_SelectedValueChanged);
             // 
@@ -76,21 +76,12 @@ namespace ShadowSXLauncher
             this.label1.TabIndex = 3;
             this.label1.Text = "UI Buttons Display";
             // 
-            // GraphicsSettingsButton
-            // 
-            this.GraphicsSettingsButton.Location = new System.Drawing.Point(113, 71);
-            this.GraphicsSettingsButton.Name = "GraphicsSettingsButton";
-            this.GraphicsSettingsButton.Size = new System.Drawing.Size(95, 51);
-            this.GraphicsSettingsButton.TabIndex = 4;
-            this.GraphicsSettingsButton.Text = "Graphics Settings (Dolphin)";
-            this.GraphicsSettingsButton.UseVisualStyleBackColor = true;
-            // 
             // ShadowColorButton
             // 
             this.ShadowColorButton.Location = new System.Drawing.Point(214, 71);
             this.ShadowColorButton.Name = "ShadowColorButton";
             this.ShadowColorButton.Size = new System.Drawing.Size(95, 51);
-            this.ShadowColorButton.TabIndex = 5;
+            this.ShadowColorButton.TabIndex = 3;
             this.ShadowColorButton.Text = "Customize Shadow Color\r\n";
             this.ShadowColorButton.UseVisualStyleBackColor = true;
             // 
@@ -101,7 +92,6 @@ namespace ShadowSXLauncher
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(316, 130);
             this.Controls.Add(this.ShadowColorButton);
-            this.Controls.Add(this.GraphicsSettingsButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UiButtonDisplayComboBox);
             this.Controls.Add(this.ModernUIControlCheckBox);
@@ -116,8 +106,6 @@ namespace ShadowSXLauncher
         }
 
         private System.Windows.Forms.Button ControllerSettingsButton;
-
-        private System.Windows.Forms.Button GraphicsSettingsButton;
 
         private System.Windows.Forms.Label label1;
 

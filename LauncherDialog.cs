@@ -24,6 +24,7 @@ namespace ShadowSXLauncher
         {
             get { return sxPath + @"\Dolphin-x64\Dolphin.exe"; }
         }
+        
         private string romPath
         {
             get { return sxPath + @"\ShadowData\ShadowTheHedgehog.iso"; }
@@ -61,14 +62,7 @@ namespace ShadowSXLauncher
             Process.Start(dolphinPath, @" -b " + romPath);
             Application.Exit();
         }
-
-        private void OpenDolphinButton_Click(object sender, EventArgs e)
-        {
-            UpdateCustomAssets();
-            Process.Start(dolphinPath);
-            Application.Exit();
-        }
-
+        
         private void OpenFileLocationButton_Click(object sender, EventArgs e)
         {
             Process.Start(sxPath);

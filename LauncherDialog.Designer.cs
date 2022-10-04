@@ -31,7 +31,6 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.RunNoGUIButton = new System.Windows.Forms.Button();
-            this.OpenDolphinButton = new System.Windows.Forms.Button();
             this.OpenFileLocationButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.SaveFileButton = new System.Windows.Forms.Button();
@@ -58,29 +57,19 @@
             this.RunNoGUIButton.UseVisualStyleBackColor = true;
             this.RunNoGUIButton.Click += new System.EventHandler(this.RunNoGUIButton_Click);
             // 
-            // OpenDolphinButton
-            // 
-            this.OpenDolphinButton.Location = new System.Drawing.Point(12, 157);
-            this.OpenDolphinButton.Name = "OpenDolphinButton";
-            this.OpenDolphinButton.Size = new System.Drawing.Size(297, 23);
-            this.OpenDolphinButton.TabIndex = 2;
-            this.OpenDolphinButton.Text = "Open Dolphin";
-            this.OpenDolphinButton.UseVisualStyleBackColor = true;
-            this.OpenDolphinButton.Click += new System.EventHandler(this.OpenDolphinButton_Click);
-            // 
             // OpenFileLocationButton
             // 
-            this.OpenFileLocationButton.Location = new System.Drawing.Point(12, 186);
+            this.OpenFileLocationButton.Location = new System.Drawing.Point(12, 157);
             this.OpenFileLocationButton.Name = "OpenFileLocationButton";
             this.OpenFileLocationButton.Size = new System.Drawing.Size(297, 23);
             this.OpenFileLocationButton.TabIndex = 3;
-            this.OpenFileLocationButton.Text = "Open File Location";
+            this.OpenFileLocationButton.Text = "Open Game Location\r\n";
             this.OpenFileLocationButton.UseVisualStyleBackColor = true;
             this.OpenFileLocationButton.Click += new System.EventHandler(this.OpenFileLocationButton_Click);
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(12, 244);
+            this.SettingsButton.Location = new System.Drawing.Point(12, 215);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(297, 23);
             this.SettingsButton.TabIndex = 5;
@@ -90,11 +79,11 @@
             // 
             // SaveFileButton
             // 
-            this.SaveFileButton.Location = new System.Drawing.Point(12, 215);
+            this.SaveFileButton.Location = new System.Drawing.Point(12, 186);
             this.SaveFileButton.Name = "SaveFileButton";
             this.SaveFileButton.Size = new System.Drawing.Size(297, 23);
             this.SaveFileButton.TabIndex = 4;
-            this.SaveFileButton.Text = "Save File";
+            this.SaveFileButton.Text = "Save File Management";
             this.SaveFileButton.UseVisualStyleBackColor = true;
             this.SaveFileButton.Click += new System.EventHandler(this.SaveFileButton_Click);
             // 
@@ -102,11 +91,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 282);
+            this.ClientSize = new System.Drawing.Size(321, 248);
             this.Controls.Add(this.SaveFileButton);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.OpenFileLocationButton);
-            this.Controls.Add(this.OpenDolphinButton);
             this.Controls.Add(this.RunNoGUIButton);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -121,7 +109,6 @@
         private System.Windows.Forms.Button SaveFileButton;
 
         private System.Windows.Forms.Button RunNoGUIButton;
-        private System.Windows.Forms.Button OpenDolphinButton;
         private System.Windows.Forms.Button OpenFileLocationButton;
         private System.Windows.Forms.Button SettingsButton;
 
