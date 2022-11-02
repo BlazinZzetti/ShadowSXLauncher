@@ -26,15 +26,21 @@ namespace ShadowSXLauncher
             //Unregister events to initialize settings.
             ModernUIControlCheckBox.CheckedChanged -= ModernUIControlCheckBox_CheckedChanged;
             UiButtonDisplayComboBox.SelectedValueChanged -= UiButtonDisplayComboBox_SelectedValueChanged;
+            CutsceneSkipCheckBox.CheckedChanged -= CutsceneSkipCheckBox_CheckedChanged;
+            GlossRemoveCheckBox.CheckedChanged -= GlossRemoveCheckBox_CheckedChanged;
 
             UiButtonDisplayComboBox.DataSource = Configuration.UiButtonStyles.Values.ToList(); 
 
             ModernUIControlCheckBox.Checked = Configuration.Instance.UseModernUiControl;
+            CutsceneSkipCheckBox.Checked = Configuration.Instance.SkipCutscenes;
+            GlossRemoveCheckBox.Checked = Configuration.Instance.RemoveGloss;
             UiButtonDisplayComboBox.SelectedIndex = Configuration.Instance.UiButtonDisplayIndex;
             
             //Re-Register Events.
             ModernUIControlCheckBox.CheckedChanged += ModernUIControlCheckBox_CheckedChanged;
             UiButtonDisplayComboBox.SelectedValueChanged += UiButtonDisplayComboBox_SelectedValueChanged;
+            CutsceneSkipCheckBox.CheckedChanged += CutsceneSkipCheckBox_CheckedChanged;
+            GlossRemoveCheckBox.CheckedChanged += GlossRemoveCheckBox_CheckedChanged;
         }
 
         private void ModernUIControlCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -53,6 +59,23 @@ namespace ShadowSXLauncher
         {
             //Open Dolphin for now.  A modified Dolphin with shortcuts will be available later.
             Process.Start(dolphinPath);
+        }
+
+        private void ShadowColorButton_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+        }
+
+        private void CutsceneSkipCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Configuration.Instance.SkipCutscenes = CutsceneSkipCheckBox.Checked;
+            Configuration.Instance.SaveSettings();
+        }
+
+        private void GlossRemoveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Configuration.Instance.RemoveGloss = GlossRemoveCheckBox.Checked;
+            Configuration.Instance.SaveSettings();
         }
     }
 }

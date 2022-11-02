@@ -12,6 +12,8 @@ namespace ShadowSXLauncher
         private XmlDocument configurationXml;
 
         public bool UseModernUiControl;
+        public bool SkipCutscenes;
+        public bool RemoveGloss;
         public int UiButtonDisplayIndex;
         private const string fileLocation = "Config.xml";
 
@@ -30,6 +32,8 @@ namespace ShadowSXLauncher
             configurationXml = null;
 
             UseModernUiControl = false;
+            SkipCutscenes = false;
+            RemoveGloss = false;
             UiButtonDisplayIndex = 0;
         }
 
@@ -75,6 +79,16 @@ namespace ShadowSXLauncher
                 {
                     UiButtonDisplayIndex = int.Parse(node.InnerText);
                 }
+                
+                if (node.Name == "SkipCutscenes")
+                {
+                    SkipCutscenes = bool.Parse(node.InnerText);
+                }
+                
+                if (node.Name == "RemoveGloss")
+                {
+                    RemoveGloss = bool.Parse(node.InnerText);
+                }
             }
         }
 
@@ -89,10 +103,18 @@ namespace ShadowSXLauncher
 
             var xmlElementUiButtonDisplayIndex = configurationXml.CreateElement("UiButtonDisplayIndex");
             xmlElementUiButtonDisplayIndex.InnerText = UiButtonDisplayIndex.ToString();
+            
+            var xmlElementSkipCutscenes = configurationXml.CreateElement("SkipCutscenes");
+            xmlElementSkipCutscenes.InnerText = SkipCutscenes.ToString();
+            
+            var xmlElementRemoveGloss = configurationXml.CreateElement("RemoveGloss");
+            xmlElementRemoveGloss.InnerText = RemoveGloss.ToString();
 
             configurationXml.AppendChild(mainNode);
             mainNode.AppendChild(xmlElementUseModernUIControl);
             mainNode.AppendChild(xmlElementUiButtonDisplayIndex);
+            mainNode.AppendChild(xmlElementSkipCutscenes);
+            mainNode.AppendChild(xmlElementRemoveGloss);
             
             configurationXml.Save(fileLocation);
         }

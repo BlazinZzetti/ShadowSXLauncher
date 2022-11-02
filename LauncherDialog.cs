@@ -84,6 +84,9 @@ namespace ShadowSXLauncher
             var gameSettings = new DolphinGameSettings(File.ReadAllText(gameSettingsFilePath));
             var geckoEnabledSection = gameSettings.Sections["Gecko_Enabled"];
             var modernUiString = "$SX - Modern UI Control";
+            var skipCutsceneString = "$SX - Allow Cutscene Skip Always";
+
+            #region Gecko Management
 
             if (geckoEnabledSection.Contains(modernUiString) != Configuration.Instance.UseModernUiControl)
             {
@@ -101,6 +104,27 @@ namespace ShadowSXLauncher
 
                 gameSettings.SaveSettings(gameSettingsFilePath);
             }
+            
+            if (geckoEnabledSection.Contains(skipCutsceneString) != Configuration.Instance.SkipCutscenes)
+            {
+                if (Configuration.Instance.SkipCutscenes)
+                {
+                    //Add the time string needed to enable the feature.
+                    geckoEnabledSection.Add(skipCutsceneString);
+                }
+                else
+                {
+                    //Remove the string the enables the feature.
+                    var stringIndex = geckoEnabledSection.FindIndex(s=> s == skipCutsceneString);
+                    geckoEnabledSection.RemoveAt(stringIndex);
+                }
+
+                gameSettings.SaveSettings(gameSettingsFilePath);
+            }
+
+            #endregion
+
+            #region UI Display Textures
 
             if (Directory.Exists(customTexturesPath + @"\Buttons"))
             {
@@ -121,6 +145,30 @@ namespace ShadowSXLauncher
                     File.Copy(buttonFile, customTexturesPath + @"\Buttons" + buttonFile.Replace(newButtonFilePath, ""));
                 }
             }
+
+            #endregion
+            
+            #region Gloss Removal
+
+            if (Directory.Exists(customTexturesPath + @"\RemoveGloss"))
+            {
+                Directory.Delete(customTexturesPath + @"\RemoveGloss", true);
+            }
+
+            if (Configuration.Instance.RemoveGloss)
+            {
+                var removeGlossFilePath = sxResorucesCustomTexturesPath + @"\RemoveGloss";
+                var removeGlossFiles = Directory.EnumerateFiles(removeGlossFilePath);
+                
+                Directory.CreateDirectory(customTexturesPath + @"\RemoveGloss");
+                
+                foreach (var removeGlossFile in removeGlossFiles)
+                {
+                    File.Copy(removeGlossFile, customTexturesPath + @"\RemoveGloss" + removeGlossFile.Replace(removeGlossFilePath, ""));
+                }
+            }
+
+            #endregion
         }
     }
 }
