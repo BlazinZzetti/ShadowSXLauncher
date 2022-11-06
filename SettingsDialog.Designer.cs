@@ -38,22 +38,23 @@ namespace ShadowSXLauncher
             this.ShadowColorButton = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.CutsceneSkipCheckBox = new System.Windows.Forms.CheckBox();
-            this.GlossRemoveCheckBox = new System.Windows.Forms.CheckBox();
+            this.GlossAdjustmentComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ControllerSettingsButton
             // 
-            this.ControllerSettingsButton.Location = new System.Drawing.Point(9, 125);
+            this.ControllerSettingsButton.Location = new System.Drawing.Point(12, 111);
             this.ControllerSettingsButton.Name = "ControllerSettingsButton";
             this.ControllerSettingsButton.Size = new System.Drawing.Size(196, 51);
             this.ControllerSettingsButton.TabIndex = 4;
-            this.ControllerSettingsButton.Text = "Open Dolphin\r\n(Will be replaced with Controller and Graphics later)";
+            this.ControllerSettingsButton.Text = "Open Dolphin Interface";
             this.ControllerSettingsButton.UseVisualStyleBackColor = true;
             this.ControllerSettingsButton.Click += new System.EventHandler(this.ControllerSettingsButton_Click);
             // 
             // ModernUIControlCheckBox
             // 
-            this.ModernUIControlCheckBox.Location = new System.Drawing.Point(12, 35);
+            this.ModernUIControlCheckBox.Location = new System.Drawing.Point(12, 30);
             this.ModernUIControlCheckBox.Name = "ModernUIControlCheckBox";
             this.ModernUIControlCheckBox.Size = new System.Drawing.Size(193, 24);
             this.ModernUIControlCheckBox.TabIndex = 1;
@@ -73,16 +74,16 @@ namespace ShadowSXLauncher
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 23);
+            this.label1.Size = new System.Drawing.Size(95, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "UI Buttons Display";
             // 
             // ShadowColorButton
             // 
             this.ShadowColorButton.Enabled = false;
-            this.ShadowColorButton.Location = new System.Drawing.Point(209, 125);
+            this.ShadowColorButton.Location = new System.Drawing.Point(214, 111);
             this.ShadowColorButton.Name = "ShadowColorButton";
             this.ShadowColorButton.Size = new System.Drawing.Size(95, 51);
             this.ShadowColorButton.TabIndex = 5;
@@ -97,7 +98,7 @@ namespace ShadowSXLauncher
             // 
             // CutsceneSkipCheckBox
             // 
-            this.CutsceneSkipCheckBox.Location = new System.Drawing.Point(12, 65);
+            this.CutsceneSkipCheckBox.Location = new System.Drawing.Point(12, 60);
             this.CutsceneSkipCheckBox.Name = "CutsceneSkipCheckBox";
             this.CutsceneSkipCheckBox.Size = new System.Drawing.Size(193, 24);
             this.CutsceneSkipCheckBox.TabIndex = 2;
@@ -105,23 +106,31 @@ namespace ShadowSXLauncher
             this.CutsceneSkipCheckBox.UseVisualStyleBackColor = true;
             this.CutsceneSkipCheckBox.CheckedChanged += new System.EventHandler(this.CutsceneSkipCheckBox_CheckedChanged);
             // 
-            // GlossRemoveCheckBox
+            // GlossAdjustmentComboBox
             // 
-            this.GlossRemoveCheckBox.Location = new System.Drawing.Point(12, 95);
-            this.GlossRemoveCheckBox.Name = "GlossRemoveCheckBox";
-            this.GlossRemoveCheckBox.Size = new System.Drawing.Size(222, 24);
-            this.GlossRemoveCheckBox.TabIndex = 3;
-            this.GlossRemoveCheckBox.Text = "Remove Glossy Effecty on Characters";
-            this.GlossRemoveCheckBox.UseVisualStyleBackColor = true;
-            this.GlossRemoveCheckBox.CheckedChanged += new System.EventHandler(this.GlossRemoveCheckBox_CheckedChanged);
+            this.GlossAdjustmentComboBox.FormattingEnabled = true;
+            this.GlossAdjustmentComboBox.Location = new System.Drawing.Point(161, 84);
+            this.GlossAdjustmentComboBox.Name = "GlossAdjustmentComboBox";
+            this.GlossAdjustmentComboBox.Size = new System.Drawing.Size(148, 21);
+            this.GlossAdjustmentComboBox.TabIndex = 3;
+            this.GlossAdjustmentComboBox.SelectedIndexChanged += new System.EventHandler(this.GlossAdjustmentComboBox_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(12, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 23);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Glossy Effecty on Characters";
             // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(316, 184);
-            this.Controls.Add(this.GlossRemoveCheckBox);
+            this.ClientSize = new System.Drawing.Size(324, 173);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.GlossAdjustmentComboBox);
             this.Controls.Add(this.CutsceneSkipCheckBox);
             this.Controls.Add(this.ShadowColorButton);
             this.Controls.Add(this.label1);
@@ -138,8 +147,10 @@ namespace ShadowSXLauncher
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.ComboBox GlossAdjustmentComboBox;
+        private System.Windows.Forms.Label label2;
+
         private System.Windows.Forms.CheckBox CutsceneSkipCheckBox;
-        private System.Windows.Forms.CheckBox GlossRemoveCheckBox;
 
         private System.Windows.Forms.ColorDialog colorDialog1;
 

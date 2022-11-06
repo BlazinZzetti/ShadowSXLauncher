@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -16,7 +17,7 @@ namespace ShadowSXLauncher
         
         private string dolphinPath
         {
-            get { return sxPath + @"\Dolphin-x64\Dolphin.exe"; }
+            get { return sxPath + @"\Dolphin-x64"; }
         }
         
         public SettingsDialog()
@@ -27,20 +28,21 @@ namespace ShadowSXLauncher
             ModernUIControlCheckBox.CheckedChanged -= ModernUIControlCheckBox_CheckedChanged;
             UiButtonDisplayComboBox.SelectedValueChanged -= UiButtonDisplayComboBox_SelectedValueChanged;
             CutsceneSkipCheckBox.CheckedChanged -= CutsceneSkipCheckBox_CheckedChanged;
-            GlossRemoveCheckBox.CheckedChanged -= GlossRemoveCheckBox_CheckedChanged;
+            GlossAdjustmentComboBox.SelectedValueChanged -= GlossAdjustmentComboBox_SelectedIndexChanged;
 
             UiButtonDisplayComboBox.DataSource = Configuration.UiButtonStyles.Values.ToList(); 
+            GlossAdjustmentComboBox.DataSource = Configuration.GlossAdjustmentOptions.Values.ToList(); 
 
             ModernUIControlCheckBox.Checked = Configuration.Instance.UseModernUiControl;
             CutsceneSkipCheckBox.Checked = Configuration.Instance.SkipCutscenes;
-            GlossRemoveCheckBox.Checked = Configuration.Instance.RemoveGloss;
+            GlossAdjustmentComboBox.SelectedIndex = Configuration.Instance.GlossAdjustmentIndex;
             UiButtonDisplayComboBox.SelectedIndex = Configuration.Instance.UiButtonDisplayIndex;
             
             //Re-Register Events.
             ModernUIControlCheckBox.CheckedChanged += ModernUIControlCheckBox_CheckedChanged;
             UiButtonDisplayComboBox.SelectedValueChanged += UiButtonDisplayComboBox_SelectedValueChanged;
             CutsceneSkipCheckBox.CheckedChanged += CutsceneSkipCheckBox_CheckedChanged;
-            GlossRemoveCheckBox.CheckedChanged += GlossRemoveCheckBox_CheckedChanged;
+            GlossAdjustmentComboBox.SelectedValueChanged += GlossAdjustmentComboBox_SelectedIndexChanged;
         }
 
         private void ModernUIControlCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -58,7 +60,14 @@ namespace ShadowSXLauncher
         private void ControllerSettingsButton_Click(object sender, EventArgs e)
         {
             //Open Dolphin for now.  A modified Dolphin with shortcuts will be available later.
-            Process.Start(dolphinPath);
+            if (Directory.Exists(dolphinPath))
+            {
+                Process.Start("\"" + dolphinPath + @"\Dolphin.exe" + "\"");
+            }
+            else
+            {
+                MessageBox.Show("Could not find dolphin.exe. Please double check directory files.");
+            }
         }
 
         private void ShadowColorButton_Click(object sender, EventArgs e)
@@ -72,9 +81,9 @@ namespace ShadowSXLauncher
             Configuration.Instance.SaveSettings();
         }
 
-        private void GlossRemoveCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void GlossAdjustmentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Configuration.Instance.RemoveGloss = GlossRemoveCheckBox.Checked;
+            Configuration.Instance.GlossAdjustmentIndex = GlossAdjustmentComboBox.SelectedIndex;
             Configuration.Instance.SaveSettings();
         }
     }

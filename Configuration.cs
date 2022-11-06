@@ -13,8 +13,8 @@ namespace ShadowSXLauncher
 
         public bool UseModernUiControl;
         public bool SkipCutscenes;
-        public bool RemoveGloss;
         public int UiButtonDisplayIndex;
+        public int GlossAdjustmentIndex;
         private const string fileLocation = "Config.xml";
 
         public static readonly Dictionary<string, string> UiButtonStyles = new Dictionary<string, string>()
@@ -26,6 +26,13 @@ namespace ShadowSXLauncher
             {"PS2", "PS2"},
             {"PS3", "PS3"},
         };
+        
+        public static readonly Dictionary<string, string> GlossAdjustmentOptions = new Dictionary<string, string>()
+        {
+            {"", "Original"},
+            {"ReducedGloss", "Reduced"},
+            {"RemovedGloss", "Removed"},
+        };
 
         private Configuration()
         {
@@ -33,8 +40,8 @@ namespace ShadowSXLauncher
 
             UseModernUiControl = false;
             SkipCutscenes = false;
-            RemoveGloss = false;
             UiButtonDisplayIndex = 0;
+            GlossAdjustmentIndex = 0;
         }
 
         public static Configuration Instance
@@ -85,9 +92,9 @@ namespace ShadowSXLauncher
                     SkipCutscenes = bool.Parse(node.InnerText);
                 }
                 
-                if (node.Name == "RemoveGloss")
+                if (node.Name == "GlossAdjustment")
                 {
-                    RemoveGloss = bool.Parse(node.InnerText);
+                    GlossAdjustmentIndex = int.Parse(node.InnerText);
                 }
             }
         }
@@ -107,14 +114,14 @@ namespace ShadowSXLauncher
             var xmlElementSkipCutscenes = configurationXml.CreateElement("SkipCutscenes");
             xmlElementSkipCutscenes.InnerText = SkipCutscenes.ToString();
             
-            var xmlElementRemoveGloss = configurationXml.CreateElement("RemoveGloss");
-            xmlElementRemoveGloss.InnerText = RemoveGloss.ToString();
+            var xmlElementGlossAdjustment = configurationXml.CreateElement("GlossAdjustment");
+            xmlElementGlossAdjustment.InnerText = GlossAdjustmentIndex.ToString();
 
             configurationXml.AppendChild(mainNode);
             mainNode.AppendChild(xmlElementUseModernUIControl);
             mainNode.AppendChild(xmlElementUiButtonDisplayIndex);
             mainNode.AppendChild(xmlElementSkipCutscenes);
-            mainNode.AppendChild(xmlElementRemoveGloss);
+            mainNode.AppendChild(xmlElementGlossAdjustment);
             
             configurationXml.Save(fileLocation);
         }
