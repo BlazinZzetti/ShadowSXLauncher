@@ -106,6 +106,7 @@ namespace ShadowSXLauncher
             var geckoEnabledSection = gameSettings.Sections["Gecko_Enabled"];
             var modernUiString = "$SX - Modern UI Control";
             var skipCutsceneString = "$SX - Allow Cutscene Skip Always";
+            var raceModeString = "$SX - Enable Race Mode";
 
             #region Gecko Management
 
@@ -137,6 +138,23 @@ namespace ShadowSXLauncher
                 {
                     //Remove the string the enables the feature.
                     var stringIndex = geckoEnabledSection.FindIndex(s=> s == skipCutsceneString);
+                    geckoEnabledSection.RemoveAt(stringIndex);
+                }
+
+                gameSettings.SaveSettings(gameSettingsFilePath);
+            }
+            
+            if (geckoEnabledSection.Contains(raceModeString) != Configuration.Instance.RaceMode)
+            {
+                if (Configuration.Instance.RaceMode)
+                {
+                    //Add the time string needed to enable the feature.
+                    geckoEnabledSection.Add(raceModeString);
+                }
+                else
+                {
+                    //Remove the string the enables the feature.
+                    var stringIndex = geckoEnabledSection.FindIndex(s=> s == raceModeString);
                     geckoEnabledSection.RemoveAt(stringIndex);
                 }
 
