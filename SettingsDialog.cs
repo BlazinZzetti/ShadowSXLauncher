@@ -28,7 +28,8 @@ namespace ShadowSXLauncher
             ModernUIControlCheckBox.CheckedChanged -= ModernUIControlCheckBox_CheckedChanged;
             UiButtonDisplayComboBox.SelectedValueChanged -= UiButtonDisplayComboBox_SelectedValueChanged;
             CutsceneSkipCheckBox.CheckedChanged -= CutsceneSkipCheckBox_CheckedChanged;
-            GlossAdjustmentComboBox.SelectedValueChanged -= GlossAdjustmentComboBox_SelectedIndexChanged;
+            GlossAdjustmentComboBox.SelectedIndexChanged -= GlossAdjustmentComboBox_SelectedIndexChanged;
+            RaceModeCheckBox.CheckedChanged -= RaceModeCheckBox_CheckedChanged;
 
             UiButtonDisplayComboBox.DataSource = Configuration.UiButtonStyles.Values.ToList(); 
             GlossAdjustmentComboBox.DataSource = Configuration.GlossAdjustmentOptions.Values.ToList(); 
@@ -37,12 +38,14 @@ namespace ShadowSXLauncher
             CutsceneSkipCheckBox.Checked = Configuration.Instance.SkipCutscenes;
             GlossAdjustmentComboBox.SelectedIndex = Configuration.Instance.GlossAdjustmentIndex;
             UiButtonDisplayComboBox.SelectedIndex = Configuration.Instance.UiButtonDisplayIndex;
+            RaceModeCheckBox.Checked = Configuration.Instance.RaceMode;
             
             //Re-Register Events.
             ModernUIControlCheckBox.CheckedChanged += ModernUIControlCheckBox_CheckedChanged;
             UiButtonDisplayComboBox.SelectedValueChanged += UiButtonDisplayComboBox_SelectedValueChanged;
             CutsceneSkipCheckBox.CheckedChanged += CutsceneSkipCheckBox_CheckedChanged;
-            GlossAdjustmentComboBox.SelectedValueChanged += GlossAdjustmentComboBox_SelectedIndexChanged;
+            GlossAdjustmentComboBox.SelectedIndexChanged += GlossAdjustmentComboBox_SelectedIndexChanged;
+            RaceModeCheckBox.CheckedChanged += RaceModeCheckBox_CheckedChanged;
         }
 
         private void ModernUIControlCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -84,6 +87,12 @@ namespace ShadowSXLauncher
         private void GlossAdjustmentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Configuration.Instance.GlossAdjustmentIndex = GlossAdjustmentComboBox.SelectedIndex;
+            Configuration.Instance.SaveSettings();
+        }
+
+        private void RaceModeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Configuration.Instance.RaceMode = RaceModeCheckBox.Checked;
             Configuration.Instance.SaveSettings();
         }
     }

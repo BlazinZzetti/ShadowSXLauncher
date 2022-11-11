@@ -40,11 +40,13 @@ namespace ShadowSXLauncher
             this.CutsceneSkipCheckBox = new System.Windows.Forms.CheckBox();
             this.GlossAdjustmentComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.RaceModeCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ControllerSettingsButton
             // 
-            this.ControllerSettingsButton.Location = new System.Drawing.Point(12, 111);
+            this.ControllerSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ControllerSettingsButton.Location = new System.Drawing.Point(12, 140);
             this.ControllerSettingsButton.Name = "ControllerSettingsButton";
             this.ControllerSettingsButton.Size = new System.Drawing.Size(196, 51);
             this.ControllerSettingsButton.TabIndex = 4;
@@ -82,8 +84,9 @@ namespace ShadowSXLauncher
             // 
             // ShadowColorButton
             // 
+            this.ShadowColorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ShadowColorButton.Enabled = false;
-            this.ShadowColorButton.Location = new System.Drawing.Point(214, 111);
+            this.ShadowColorButton.Location = new System.Drawing.Point(217, 140);
             this.ShadowColorButton.Name = "ShadowColorButton";
             this.ShadowColorButton.Size = new System.Drawing.Size(95, 51);
             this.ShadowColorButton.TabIndex = 5;
@@ -123,12 +126,23 @@ namespace ShadowSXLauncher
             this.label2.TabIndex = 7;
             this.label2.Text = "Glossy Effecty on Characters";
             // 
+            // RaceModeCheckBox
+            // 
+            this.RaceModeCheckBox.Location = new System.Drawing.Point(12, 113);
+            this.RaceModeCheckBox.Name = "RaceModeCheckBox";
+            this.RaceModeCheckBox.Size = new System.Drawing.Size(236, 24);
+            this.RaceModeCheckBox.TabIndex = 8;
+            this.RaceModeCheckBox.Text = "Show Total IGT for Story Runs (Race Mode)";
+            this.RaceModeCheckBox.UseVisualStyleBackColor = true;
+            this.RaceModeCheckBox.CheckedChanged += new System.EventHandler(this.RaceModeCheckBox_CheckedChanged);
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(324, 173);
+            this.ClientSize = new System.Drawing.Size(324, 203);
+            this.Controls.Add(this.RaceModeCheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GlossAdjustmentComboBox);
             this.Controls.Add(this.CutsceneSkipCheckBox);
@@ -146,6 +160,8 @@ namespace ShadowSXLauncher
             this.Text = "Settings";
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.CheckBox RaceModeCheckBox;
 
         private System.Windows.Forms.ComboBox GlossAdjustmentComboBox;
         private System.Windows.Forms.Label label2;

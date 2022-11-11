@@ -15,6 +15,8 @@ namespace ShadowSXLauncher
         public bool SkipCutscenes;
         public int UiButtonDisplayIndex;
         public int GlossAdjustmentIndex;
+        public bool RaceMode;
+        
         private const string fileLocation = "Config.xml";
 
         public static readonly Dictionary<string, string> UiButtonStyles = new Dictionary<string, string>()
@@ -42,6 +44,7 @@ namespace ShadowSXLauncher
             SkipCutscenes = false;
             UiButtonDisplayIndex = 0;
             GlossAdjustmentIndex = 0;
+            RaceMode = false;
         }
 
         public static Configuration Instance
@@ -96,6 +99,11 @@ namespace ShadowSXLauncher
                 {
                     GlossAdjustmentIndex = int.Parse(node.InnerText);
                 }
+                
+                if (node.Name == "RaceMode")
+                {
+                    SkipCutscenes = bool.Parse(node.InnerText);
+                }
             }
         }
 
@@ -116,12 +124,16 @@ namespace ShadowSXLauncher
             
             var xmlElementGlossAdjustment = configurationXml.CreateElement("GlossAdjustment");
             xmlElementGlossAdjustment.InnerText = GlossAdjustmentIndex.ToString();
+            
+            var xmlElementRaceMode = configurationXml.CreateElement("RaceMode");
+            xmlElementRaceMode.InnerText = RaceMode.ToString();
 
             configurationXml.AppendChild(mainNode);
             mainNode.AppendChild(xmlElementUseModernUIControl);
             mainNode.AppendChild(xmlElementUiButtonDisplayIndex);
             mainNode.AppendChild(xmlElementSkipCutscenes);
             mainNode.AppendChild(xmlElementGlossAdjustment);
+            mainNode.AppendChild(xmlElementRaceMode);
             
             configurationXml.Save(fileLocation);
         }
