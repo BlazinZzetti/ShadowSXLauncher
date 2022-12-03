@@ -102,7 +102,7 @@ namespace ShadowSXLauncher
                 
                 if (node.Name == "RaceMode")
                 {
-                    SkipCutscenes = bool.Parse(node.InnerText);
+                    RaceMode = bool.Parse(node.InnerText);
                 }
             }
         }
