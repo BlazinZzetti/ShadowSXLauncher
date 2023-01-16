@@ -314,7 +314,7 @@ namespace ShadowSXLauncher
                 //We can assume that gupe8pLocation is not empty or null. 
                 if (!string.IsNullOrEmpty(patchedRomDestination))
                 {
-                    var batArguments = string.Format("{0} {1} {2} {3}", gupe8pLocation, patchedRomDestination,
+                    var batArguments = string.Format("\"{0}\" \"{1}\" \"{2}\" \"{3}\"", gupe8pLocation, patchedRomDestination,
                             xdeltaExePath, vcdiffPath);
                         
                     var processResult = Process.Start("\"" + patchBatPath + "\"", batArguments);
