@@ -36,17 +36,21 @@ namespace ShadowSXLauncher
             this.UiButtonDisplayComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ShadowColorButton = new System.Windows.Forms.Button();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.CutsceneSkipCheckBox = new System.Windows.Forms.CheckBox();
             this.GlossAdjustmentComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.RaceModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.RomLocationTextBox = new System.Windows.Forms.TextBox();
+            this.SetRomLocationButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ControllerSettingsButton
             // 
             this.ControllerSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ControllerSettingsButton.Location = new System.Drawing.Point(12, 140);
+            this.ControllerSettingsButton.Location = new System.Drawing.Point(12, 226);
             this.ControllerSettingsButton.Name = "ControllerSettingsButton";
             this.ControllerSettingsButton.Size = new System.Drawing.Size(196, 51);
             this.ControllerSettingsButton.TabIndex = 4;
@@ -56,7 +60,7 @@ namespace ShadowSXLauncher
             // 
             // ModernUIControlCheckBox
             // 
-            this.ModernUIControlCheckBox.Location = new System.Drawing.Point(12, 30);
+            this.ModernUIControlCheckBox.Location = new System.Drawing.Point(15, 115);
             this.ModernUIControlCheckBox.Name = "ModernUIControlCheckBox";
             this.ModernUIControlCheckBox.Size = new System.Drawing.Size(193, 24);
             this.ModernUIControlCheckBox.TabIndex = 1;
@@ -67,7 +71,7 @@ namespace ShadowSXLauncher
             // UiButtonDisplayComboBox
             // 
             this.UiButtonDisplayComboBox.FormattingEnabled = true;
-            this.UiButtonDisplayComboBox.Location = new System.Drawing.Point(113, 6);
+            this.UiButtonDisplayComboBox.Location = new System.Drawing.Point(113, 165);
             this.UiButtonDisplayComboBox.Name = "UiButtonDisplayComboBox";
             this.UiButtonDisplayComboBox.Size = new System.Drawing.Size(121, 21);
             this.UiButtonDisplayComboBox.TabIndex = 0;
@@ -76,7 +80,7 @@ namespace ShadowSXLauncher
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 8);
+            this.label1.Location = new System.Drawing.Point(12, 168);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 19);
             this.label1.TabIndex = 3;
@@ -86,7 +90,7 @@ namespace ShadowSXLauncher
             // 
             this.ShadowColorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ShadowColorButton.Enabled = false;
-            this.ShadowColorButton.Location = new System.Drawing.Point(217, 140);
+            this.ShadowColorButton.Location = new System.Drawing.Point(217, 226);
             this.ShadowColorButton.Name = "ShadowColorButton";
             this.ShadowColorButton.Size = new System.Drawing.Size(95, 51);
             this.ShadowColorButton.TabIndex = 5;
@@ -94,25 +98,20 @@ namespace ShadowSXLauncher
             this.ShadowColorButton.UseVisualStyleBackColor = true;
             this.ShadowColorButton.Click += new System.EventHandler(this.ShadowColorButton_Click);
             // 
-            // colorDialog1
-            // 
-            this.colorDialog1.AnyColor = true;
-            this.colorDialog1.FullOpen = true;
-            // 
             // CutsceneSkipCheckBox
             // 
-            this.CutsceneSkipCheckBox.Location = new System.Drawing.Point(12, 60);
+            this.CutsceneSkipCheckBox.Location = new System.Drawing.Point(15, 55);
             this.CutsceneSkipCheckBox.Name = "CutsceneSkipCheckBox";
             this.CutsceneSkipCheckBox.Size = new System.Drawing.Size(193, 24);
             this.CutsceneSkipCheckBox.TabIndex = 2;
-            this.CutsceneSkipCheckBox.Text = "Always allow skipping Cutscenes";
+            this.CutsceneSkipCheckBox.Text = "Restore Original Cutscene Skipping";
             this.CutsceneSkipCheckBox.UseVisualStyleBackColor = true;
             this.CutsceneSkipCheckBox.CheckedChanged += new System.EventHandler(this.CutsceneSkipCheckBox_CheckedChanged);
             // 
             // GlossAdjustmentComboBox
             // 
             this.GlossAdjustmentComboBox.FormattingEnabled = true;
-            this.GlossAdjustmentComboBox.Location = new System.Drawing.Point(161, 84);
+            this.GlossAdjustmentComboBox.Location = new System.Drawing.Point(164, 192);
             this.GlossAdjustmentComboBox.Name = "GlossAdjustmentComboBox";
             this.GlossAdjustmentComboBox.Size = new System.Drawing.Size(148, 21);
             this.GlossAdjustmentComboBox.TabIndex = 3;
@@ -120,7 +119,7 @@ namespace ShadowSXLauncher
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 87);
+            this.label2.Location = new System.Drawing.Point(12, 195);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 23);
             this.label2.TabIndex = 7;
@@ -128,7 +127,7 @@ namespace ShadowSXLauncher
             // 
             // RaceModeCheckBox
             // 
-            this.RaceModeCheckBox.Location = new System.Drawing.Point(12, 113);
+            this.RaceModeCheckBox.Location = new System.Drawing.Point(15, 85);
             this.RaceModeCheckBox.Name = "RaceModeCheckBox";
             this.RaceModeCheckBox.Size = new System.Drawing.Size(236, 24);
             this.RaceModeCheckBox.TabIndex = 8;
@@ -136,12 +135,59 @@ namespace ShadowSXLauncher
             this.RaceModeCheckBox.UseVisualStyleBackColor = true;
             this.RaceModeCheckBox.CheckedChanged += new System.EventHandler(this.RaceModeCheckBox_CheckedChanged);
             // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "SX ROM Location";
+            // 
+            // RomLocationTextBox
+            // 
+            this.RomLocationTextBox.Location = new System.Drawing.Point(113, 6);
+            this.RomLocationTextBox.Name = "RomLocationTextBox";
+            this.RomLocationTextBox.ReadOnly = true;
+            this.RomLocationTextBox.Size = new System.Drawing.Size(168, 20);
+            this.RomLocationTextBox.TabIndex = 10;
+            // 
+            // SetRomLocationButton
+            // 
+            this.SetRomLocationButton.Location = new System.Drawing.Point(287, 4);
+            this.SetRomLocationButton.Name = "SetRomLocationButton";
+            this.SetRomLocationButton.Size = new System.Drawing.Size(25, 23);
+            this.SetRomLocationButton.TabIndex = 11;
+            this.SetRomLocationButton.Text = "...";
+            this.SetRomLocationButton.UseVisualStyleBackColor = true;
+            this.SetRomLocationButton.Click += new System.EventHandler(this.SetRomLocationButton_Click);
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(12, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 17);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "ROM Settings";
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(12, 145);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Graphic Settings";
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(324, 203);
+            this.ClientSize = new System.Drawing.Size(324, 289);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.SetRomLocationButton);
+            this.Controls.Add(this.RomLocationTextBox);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.RaceModeCheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GlossAdjustmentComboBox);
@@ -159,7 +205,17 @@ namespace ShadowSXLauncher
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+
+        private System.Windows.Forms.Button SetRomLocationButton;
+
+        private System.Windows.Forms.TextBox RomLocationTextBox;
+
+        private System.Windows.Forms.Label label3;
 
         private System.Windows.Forms.CheckBox RaceModeCheckBox;
 
@@ -167,8 +223,6 @@ namespace ShadowSXLauncher
         private System.Windows.Forms.Label label2;
 
         private System.Windows.Forms.CheckBox CutsceneSkipCheckBox;
-
-        private System.Windows.Forms.ColorDialog colorDialog1;
 
         private System.Windows.Forms.Button ControllerSettingsButton;
 

@@ -32,10 +32,11 @@ namespace ShadowSXLauncher
             RaceModeCheckBox.CheckedChanged -= RaceModeCheckBox_CheckedChanged;
 
             UiButtonDisplayComboBox.DataSource = Configuration.UiButtonStyles.Values.ToList(); 
-            GlossAdjustmentComboBox.DataSource = Configuration.GlossAdjustmentOptions.Values.ToList(); 
+            GlossAdjustmentComboBox.DataSource = Configuration.GlossAdjustmentOptions.Values.ToList();
 
+            RomLocationTextBox.Text = Configuration.Instance.RomLocation;
             ModernUIControlCheckBox.Checked = Configuration.Instance.UseModernUiControl;
-            CutsceneSkipCheckBox.Checked = Configuration.Instance.SkipCutscenes;
+            CutsceneSkipCheckBox.Checked = Configuration.Instance.DisableSkipCutscenes;
             GlossAdjustmentComboBox.SelectedIndex = Configuration.Instance.GlossAdjustmentIndex;
             UiButtonDisplayComboBox.SelectedIndex = Configuration.Instance.UiButtonDisplayIndex;
             RaceModeCheckBox.Checked = Configuration.Instance.RaceMode;
@@ -75,12 +76,12 @@ namespace ShadowSXLauncher
 
         private void ShadowColorButton_Click(object sender, EventArgs e)
         {
-            colorDialog1.ShowDialog();
+            //colorDialog1.ShowDialog();
         }
 
         private void CutsceneSkipCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Configuration.Instance.SkipCutscenes = CutsceneSkipCheckBox.Checked;
+            Configuration.Instance.DisableSkipCutscenes = CutsceneSkipCheckBox.Checked;
             Configuration.Instance.SaveSettings();
         }
 
@@ -94,6 +95,42 @@ namespace ShadowSXLauncher
         {
             Configuration.Instance.RaceMode = RaceModeCheckBox.Checked;
             Configuration.Instance.SaveSettings();
+        }
+
+        private void SetRomLocationButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                var romSelectionComplete = false;
+                while (!romSelectionComplete)
+                {
+                    ofd.InitialDirectory = sxPath;
+                    ofd.Filter = "ROM file (*.iso)|*.iso";
+                    ofd.RestoreDirectory = true;
+
+                    var selectedRom = "";
+                    var dialogResult = ofd.ShowDialog();
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        selectedRom = ofd.FileName;
+                    }
+                    else if (dialogResult == DialogResult.Cancel)
+                    {
+                        Configuration.Instance.RomLocation = string.Empty;
+                        Configuration.Instance.SaveSettings();
+                        romSelectionComplete = true;
+                        continue;
+                    }
+
+                    if (File.Exists(selectedRom))
+                    {
+                        Configuration.Instance.RomLocation = selectedRom;
+                        Configuration.Instance.SaveSettings();
+                        romSelectionComplete = true;
+                    }
+                }
+            }
+            RomLocationTextBox.Text = Configuration.Instance.RomLocation;
         }
     }
 }

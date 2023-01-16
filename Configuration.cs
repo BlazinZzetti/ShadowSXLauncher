@@ -11,8 +11,9 @@ namespace ShadowSXLauncher
 
         private XmlDocument configurationXml;
 
+        public string RomLocation;
         public bool UseModernUiControl;
-        public bool SkipCutscenes;
+        public bool DisableSkipCutscenes;
         public int UiButtonDisplayIndex;
         public int GlossAdjustmentIndex;
         public bool RaceMode;
@@ -40,8 +41,9 @@ namespace ShadowSXLauncher
         {
             configurationXml = null;
 
+            RomLocation = "";
             UseModernUiControl = false;
-            SkipCutscenes = false;
+            DisableSkipCutscenes = false;
             UiButtonDisplayIndex = 0;
             GlossAdjustmentIndex = 0;
             RaceMode = false;
@@ -71,7 +73,9 @@ namespace ShadowSXLauncher
                 {
                     configurationXml.Load(fileLocation);
                 }
+#pragma warning disable CS0168
                 catch(IOException e)
+#pragma warning restore CS0168
                 {
                     //Create the file if it doesnt exist.
                     SaveSettings();
@@ -80,6 +84,11 @@ namespace ShadowSXLauncher
 
             foreach (XmlElement node in configurationXml.DocumentElement)
             {
+                if (node.Name == "RomLocation")
+                {
+                    RomLocation = node.InnerText;
+                }
+                
                 if (node.Name == "UseModernUIControl")
                 {
                     UseModernUiControl = bool.Parse(node.InnerText);
@@ -90,9 +99,9 @@ namespace ShadowSXLauncher
                     UiButtonDisplayIndex = int.Parse(node.InnerText);
                 }
                 
-                if (node.Name == "SkipCutscenes")
+                if (node.Name == "DisableSkipCutscenes")
                 {
-                    SkipCutscenes = bool.Parse(node.InnerText);
+                    DisableSkipCutscenes = bool.Parse(node.InnerText);
                 }
                 
                 if (node.Name == "GlossAdjustment")
@@ -113,14 +122,17 @@ namespace ShadowSXLauncher
 
             var mainNode = configurationXml.CreateElement("Settings");
 
+            var xmlElementRomLocation = configurationXml.CreateElement("RomLocation");
+            xmlElementRomLocation.InnerText = RomLocation;
+            
             var xmlElementUseModernUIControl = configurationXml.CreateElement("UseModernUIControl");
             xmlElementUseModernUIControl.InnerText = UseModernUiControl.ToString();
 
             var xmlElementUiButtonDisplayIndex = configurationXml.CreateElement("UiButtonDisplayIndex");
             xmlElementUiButtonDisplayIndex.InnerText = UiButtonDisplayIndex.ToString();
             
-            var xmlElementSkipCutscenes = configurationXml.CreateElement("SkipCutscenes");
-            xmlElementSkipCutscenes.InnerText = SkipCutscenes.ToString();
+            var xmlElementSkipCutscenes = configurationXml.CreateElement("DisableSkipCutscenes");
+            xmlElementSkipCutscenes.InnerText = DisableSkipCutscenes.ToString();
             
             var xmlElementGlossAdjustment = configurationXml.CreateElement("GlossAdjustment");
             xmlElementGlossAdjustment.InnerText = GlossAdjustmentIndex.ToString();
@@ -129,6 +141,7 @@ namespace ShadowSXLauncher
             xmlElementRaceMode.InnerText = RaceMode.ToString();
 
             configurationXml.AppendChild(mainNode);
+            mainNode.AppendChild(xmlElementRomLocation);
             mainNode.AppendChild(xmlElementUseModernUIControl);
             mainNode.AppendChild(xmlElementUiButtonDisplayIndex);
             mainNode.AppendChild(xmlElementSkipCutscenes);
