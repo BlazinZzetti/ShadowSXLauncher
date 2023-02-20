@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherDialog));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.RunNoGUIButton = new System.Windows.Forms.Button();
             this.OpenFileLocationButton = new System.Windows.Forms.Button();
@@ -41,18 +42,20 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ShadowSXLauncher.Properties.Resources.S_SX_Launcher_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(297, 110);
+            this.pictureBox1.Size = new System.Drawing.Size(396, 135);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // RunNoGUIButton
             // 
-            this.RunNoGUIButton.Location = new System.Drawing.Point(12, 128);
+            this.RunNoGUIButton.Location = new System.Drawing.Point(16, 158);
+            this.RunNoGUIButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RunNoGUIButton.Name = "RunNoGUIButton";
-            this.RunNoGUIButton.Size = new System.Drawing.Size(297, 23);
+            this.RunNoGUIButton.Size = new System.Drawing.Size(396, 28);
             this.RunNoGUIButton.TabIndex = 1;
             this.RunNoGUIButton.Text = "Run Shadow SX";
             this.RunNoGUIButton.UseVisualStyleBackColor = true;
@@ -60,9 +63,10 @@
             // 
             // OpenFileLocationButton
             // 
-            this.OpenFileLocationButton.Location = new System.Drawing.Point(12, 186);
+            this.OpenFileLocationButton.Location = new System.Drawing.Point(16, 229);
+            this.OpenFileLocationButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OpenFileLocationButton.Name = "OpenFileLocationButton";
-            this.OpenFileLocationButton.Size = new System.Drawing.Size(297, 23);
+            this.OpenFileLocationButton.Size = new System.Drawing.Size(396, 28);
             this.OpenFileLocationButton.TabIndex = 3;
             this.OpenFileLocationButton.Text = "Open Game Location\r\n";
             this.OpenFileLocationButton.UseVisualStyleBackColor = true;
@@ -70,9 +74,10 @@
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(12, 244);
+            this.SettingsButton.Location = new System.Drawing.Point(16, 300);
+            this.SettingsButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(297, 23);
+            this.SettingsButton.Size = new System.Drawing.Size(396, 28);
             this.SettingsButton.TabIndex = 5;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
@@ -80,9 +85,10 @@
             // 
             // SaveFileButton
             // 
-            this.SaveFileButton.Location = new System.Drawing.Point(12, 215);
+            this.SaveFileButton.Location = new System.Drawing.Point(16, 265);
+            this.SaveFileButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SaveFileButton.Name = "SaveFileButton";
-            this.SaveFileButton.Size = new System.Drawing.Size(297, 23);
+            this.SaveFileButton.Size = new System.Drawing.Size(396, 28);
             this.SaveFileButton.TabIndex = 4;
             this.SaveFileButton.Text = "Save File Management";
             this.SaveFileButton.UseVisualStyleBackColor = true;
@@ -90,9 +96,10 @@
             // 
             // CreateRomButton
             // 
-            this.CreateRomButton.Location = new System.Drawing.Point(12, 157);
+            this.CreateRomButton.Location = new System.Drawing.Point(16, 193);
+            this.CreateRomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CreateRomButton.Name = "CreateRomButton";
-            this.CreateRomButton.Size = new System.Drawing.Size(297, 23);
+            this.CreateRomButton.Size = new System.Drawing.Size(396, 28);
             this.CreateRomButton.TabIndex = 6;
             this.CreateRomButton.Text = "Create Shadow SX Rom";
             this.CreateRomButton.UseVisualStyleBackColor = true;
@@ -100,9 +107,9 @@
             // 
             // LauncherDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 278);
+            this.ClientSize = new System.Drawing.Size(428, 342);
             this.Controls.Add(this.CreateRomButton);
             this.Controls.Add(this.SaveFileButton);
             this.Controls.Add(this.SettingsButton);
@@ -110,6 +117,8 @@
             this.Controls.Add(this.RunNoGUIButton);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LauncherDialog";
@@ -117,6 +126,7 @@
             this.Text = "Shadow SX Launcher";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Button CreateRomButton;

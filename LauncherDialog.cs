@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,14 +8,10 @@ namespace ShadowSXLauncher
 {
     public partial class LauncherDialog : Form
     {
-        private string sxPath
-        {
-            get { return Application.ExecutablePath.Replace(@"\ShadowSXLauncher.exe", ""); }
-        }
 
         private string dolphinPath
         {
-            get { return sxPath + @"\Dolphin-x64"; }
+            get { return Application.StartupPath + @"\Dolphin-x64"; }
         }
         
         private string savePath
@@ -34,19 +29,19 @@ namespace ShadowSXLauncher
             get { return dolphinPath + @"\User\Load\Textures\GUPE8P"; }
         }
 
-        private string sxResorucesPath
+        private string sxResourcesPath
         {
-            get { return sxPath + @"\ShadowSXResources"; }
+            get { return Application.StartupPath + @"\ShadowSXResources"; }
         }
         
-        private string sxResorucesCustomTexturesPath
+        private string sxResourcesCustomTexturesPath
         {
-            get { return sxResorucesPath + @"\CustomTextures\GUPE8P"; }
+            get { return sxResourcesPath + @"\CustomTextures\GUPE8P"; }
         }
         
-        private string sxResorucesISOPatchingPath
+        private string sxResourcesISOPatchingPath
         {
-            get { return sxResorucesPath + @"\PatchingFiles"; }
+            get { return sxResourcesPath + @"\PatchingFiles"; }
         }
         
         public LauncherDialog()
@@ -100,7 +95,7 @@ namespace ShadowSXLauncher
                 var romSelectionComplete = false;
                 while (!romSelectionComplete)
                 {
-                    ofd.InitialDirectory = sxPath;
+                    ofd.InitialDirectory = Application.StartupPath;
                     ofd.Filter = "ROM file (*.iso)|*.iso";
                     ofd.RestoreDirectory = true;
 
@@ -130,7 +125,7 @@ namespace ShadowSXLauncher
 
         private void OpenFileLocationButton_Click(object sender, EventArgs e)
         {
-            Process.Start(sxPath);
+            Process.Start(Application.StartupPath);
         }
 
         private void SaveFileButton_Click(object sender, EventArgs e)
@@ -225,7 +220,7 @@ namespace ShadowSXLauncher
                 Configuration.UiButtonStyles.Keys.ToArray()[Configuration.Instance.UiButtonDisplayIndex];
             if (!string.IsNullOrEmpty(buttonAssetsFolder))
             {
-                var newButtonFilePath = sxResorucesCustomTexturesPath + @"\Buttons\" + buttonAssetsFolder;
+                var newButtonFilePath = sxResourcesCustomTexturesPath + @"\Buttons\" + buttonAssetsFolder;
                 var newButtonUiFiles = Directory.EnumerateFiles(newButtonFilePath);
                 
                 Directory.CreateDirectory(customTexturesPath + @"\Buttons");
@@ -249,7 +244,7 @@ namespace ShadowSXLauncher
                 Configuration.GlossAdjustmentOptions.Keys.ToArray()[Configuration.Instance.GlossAdjustmentIndex];
             if (!string.IsNullOrEmpty(glossAssetsFolder))
             {
-                var removeGlossFilePath = sxResorucesCustomTexturesPath + @"\GlossAdjustment\" + glossAssetsFolder;
+                var removeGlossFilePath = sxResourcesCustomTexturesPath + @"\GlossAdjustment\" + glossAssetsFolder;
                 var removeGlossFiles = Directory.EnumerateFiles(removeGlossFilePath);
                 
                 Directory.CreateDirectory(customTexturesPath + @"\GlossAdjustment");
@@ -265,9 +260,9 @@ namespace ShadowSXLauncher
 
         private void CreateRomButton_Click(object sender, EventArgs e)
         {
-            var xdeltaExePath = sxResorucesISOPatchingPath + @"\xdelta-3.1.0-x86_64.exe";
-            var vcdiffPath = sxResorucesISOPatchingPath + @".\vcdiff\ShadowSX.vcdiff";
-            var patchBatPath = sxResorucesISOPatchingPath + @"\Patch ISO.bat";
+            var xdeltaExePath = sxResourcesISOPatchingPath + @"\xdelta-3.1.0-x86_64.exe";
+            var vcdiffPath = sxResourcesISOPatchingPath + @".\vcdiff\ShadowSX.vcdiff";
+            var patchBatPath = sxResourcesISOPatchingPath + @"\Patch ISO.bat";
                     
             var allPatchFilesFound = File.Exists(xdeltaExePath);
             allPatchFilesFound &= File.Exists(vcdiffPath);
@@ -280,7 +275,7 @@ namespace ShadowSXLauncher
                 
                 using (OpenFileDialog ofd = new OpenFileDialog())
                 {
-                    ofd.InitialDirectory = sxPath;
+                    ofd.InitialDirectory = Application.StartupPath;
                     ofd.Filter = "ROM file (*.iso)|*.iso";
                     ofd.RestoreDirectory = true;
 
