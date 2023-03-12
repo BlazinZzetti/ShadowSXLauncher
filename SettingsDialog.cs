@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace ShadowSXLauncher
 {
     public partial class SettingsDialog : Form
     {
-        private string sxPath
-        {
-            get { return Application.ExecutablePath.Replace("ShadowSXLauncher.exe", ""); }
-        }
         
         private string dolphinPath
         {
-            get { return sxPath + @"\Dolphin-x64"; }
+            get { return Application.StartupPath + @"\Dolphin-x64"; }
         }
         
         public SettingsDialog()
@@ -66,7 +60,7 @@ namespace ShadowSXLauncher
             //Open Dolphin for now.  A modified Dolphin with shortcuts will be available later.
             if (Directory.Exists(dolphinPath))
             {
-                Process.Start("\"" + dolphinPath + @"\Dolphin.exe" + "\"");
+                Process.Start(dolphinPath + @"\Dolphin.exe");
             }
             else
             {
@@ -104,7 +98,7 @@ namespace ShadowSXLauncher
                 var romSelectionComplete = false;
                 while (!romSelectionComplete)
                 {
-                    ofd.InitialDirectory = sxPath;
+                    ofd.InitialDirectory = Application.StartupPath;
                     ofd.Filter = "ROM file (*.iso)|*.iso";
                     ofd.RestoreDirectory = true;
 

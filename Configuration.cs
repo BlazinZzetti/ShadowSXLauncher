@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Net;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace ShadowSXLauncher
@@ -18,7 +18,7 @@ namespace ShadowSXLauncher
         public int GlossAdjustmentIndex;
         public bool RaceMode;
         
-        private const string fileLocation = "Config.xml";
+        private string fileLocation = Application.StartupPath + @"\Config.xml";
 
         public static readonly Dictionary<string, string> UiButtonStyles = new Dictionary<string, string>()
         {
