@@ -19,34 +19,19 @@ namespace ShadowSXLauncher
             InitializeComponent();
             
             //Unregister events to initialize settings.
-            ModernUIControlCheckBox.CheckedChanged -= ModernUIControlCheckBox_CheckedChanged;
             UiButtonDisplayComboBox.SelectedValueChanged -= UiButtonDisplayComboBox_SelectedValueChanged;
-            CutsceneSkipCheckBox.CheckedChanged -= CutsceneSkipCheckBox_CheckedChanged;
             GlossAdjustmentComboBox.SelectedIndexChanged -= GlossAdjustmentComboBox_SelectedIndexChanged;
-            RaceModeCheckBox.CheckedChanged -= RaceModeCheckBox_CheckedChanged;
 
             UiButtonDisplayComboBox.DataSource = Configuration.UiButtonStyles.Values.ToList(); 
             GlossAdjustmentComboBox.DataSource = Configuration.GlossAdjustmentOptions.Values.ToList();
 
             RomLocationTextBox.Text = Configuration.Instance.RomLocation;
-            ModernUIControlCheckBox.Checked = Configuration.Instance.UseModernUiControl;
-            CutsceneSkipCheckBox.Checked = Configuration.Instance.DisableSkipCutscenes;
             GlossAdjustmentComboBox.SelectedIndex = Configuration.Instance.GlossAdjustmentIndex;
             UiButtonDisplayComboBox.SelectedIndex = Configuration.Instance.UiButtonDisplayIndex;
-            RaceModeCheckBox.Checked = Configuration.Instance.RaceMode;
-            
-            //Re-Register Events.
-            ModernUIControlCheckBox.CheckedChanged += ModernUIControlCheckBox_CheckedChanged;
-            UiButtonDisplayComboBox.SelectedValueChanged += UiButtonDisplayComboBox_SelectedValueChanged;
-            CutsceneSkipCheckBox.CheckedChanged += CutsceneSkipCheckBox_CheckedChanged;
-            GlossAdjustmentComboBox.SelectedIndexChanged += GlossAdjustmentComboBox_SelectedIndexChanged;
-            RaceModeCheckBox.CheckedChanged += RaceModeCheckBox_CheckedChanged;
-        }
 
-        private void ModernUIControlCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Configuration.Instance.UseModernUiControl = ModernUIControlCheckBox.Checked;
-            Configuration.Instance.SaveSettings();
+            //Re-Register Events.
+            UiButtonDisplayComboBox.SelectedValueChanged += UiButtonDisplayComboBox_SelectedValueChanged;
+            GlossAdjustmentComboBox.SelectedIndexChanged += GlossAdjustmentComboBox_SelectedIndexChanged;
         }
 
         private void UiButtonDisplayComboBox_SelectedValueChanged(object sender, EventArgs e)
@@ -72,22 +57,10 @@ namespace ShadowSXLauncher
         {
             //colorDialog1.ShowDialog();
         }
-
-        private void CutsceneSkipCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Configuration.Instance.DisableSkipCutscenes = CutsceneSkipCheckBox.Checked;
-            Configuration.Instance.SaveSettings();
-        }
-
+        
         private void GlossAdjustmentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Configuration.Instance.GlossAdjustmentIndex = GlossAdjustmentComboBox.SelectedIndex;
-            Configuration.Instance.SaveSettings();
-        }
-
-        private void RaceModeCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Configuration.Instance.RaceMode = RaceModeCheckBox.Checked;
             Configuration.Instance.SaveSettings();
         }
 
