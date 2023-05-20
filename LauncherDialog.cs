@@ -21,12 +21,12 @@ namespace ShadowSXLauncher
         
         private string gameSettingsFilePath
         {
-            get { return dolphinPath + @"\User\GameSettings\GUPE8P.ini"; }
+            get { return dolphinPath + @"\User\GameSettings\GUPX8P.ini"; }
         }
 
         private string customTexturesPath
         {
-            get { return dolphinPath + @"\User\Load\Textures\GUPE8P"; }
+            get { return dolphinPath + @"\User\Load\Textures\GUPX8P"; }
         }
 
         private string sxResourcesPath
@@ -36,7 +36,7 @@ namespace ShadowSXLauncher
         
         private string sxResourcesCustomTexturesPath
         {
-            get { return sxResourcesPath + @"\CustomTextures\GUPE8P"; }
+            get { return sxResourcesPath + @"\CustomTextures\GUPX8P"; }
         }
         
         private string sxResourcesISOPatchingPath
