@@ -51,6 +51,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cyotek.Windows.Forms.ColorPicker, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
+      <HintPath>packages\Cyotek.Windows.Forms.ColorPicker.1.7.2\lib\net35\Cyotek.Windows.Forms.ColorPicker.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,6 +69,8 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="DolphinGameSettings.cs" />
+    <Compile Include="ShadowColorAdjusterForm.cs" />
+    <Compile Include="ShadowColorAdjusterForm.Designer.cs" />
     <Compile Include="LauncherDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +85,7 @@
     <Compile Include="SettingsDialog.Designer.cs">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ShadowColorAdjusterForm.resx" />
     <EmbeddedResource Include="LauncherDialog.resx">
       <DependentUpon>LauncherDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +101,7 @@
     <EmbeddedResource Include="SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +117,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\S-SX.ico" />
+    <Content Include="Resources\ShadowColorBase1.png" />
+    <Content Include="Resources\ShadowColorBase2.png" />
+    <Content Include="Resources\ShadowColorBase3.png" />
+    <Content Include="Resources\ShadowColorBase4.png" />
+    <Content Include="Resources\ShadowColorBase5.png" />
+    <Content Include="Resources\ShadowColorMask1.png" />
+    <Content Include="Resources\ShadowColorMask2.png" />
+    <Content Include="Resources\ShadowColorMask3.png" />
+    <Content Include="Resources\ShadowColorMask4.png" />
+    <Content Include="Resources\ShadowColorMask5.png" />
+    <Content Include="Resources\ShadowColorMask6.png" />
     <Content Include="Resources\S_SX_Launcher_Logo.png" />
   </ItemGroup>
   <ItemGroup>

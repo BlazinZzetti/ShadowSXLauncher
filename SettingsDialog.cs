@@ -55,7 +55,8 @@ namespace ShadowSXLauncher
 
         private void ShadowColorButton_Click(object sender, EventArgs e)
         {
-            //colorDialog1.ShowDialog();
+            var colorAdjuster = new ShadowColorAdjuster();
+            colorAdjuster.ShowDialog();
         }
         
         private void GlossAdjustmentComboBox_SelectedIndexChanged(object sender, EventArgs e)

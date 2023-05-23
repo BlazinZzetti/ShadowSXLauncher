@@ -47,9 +47,10 @@ namespace ShadowSXLauncher
             // ControllerSettingsButton
             // 
             this.ControllerSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ControllerSettingsButton.Location = new System.Drawing.Point(12, 117);
+            this.ControllerSettingsButton.Location = new System.Drawing.Point(18, 180);
+            this.ControllerSettingsButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ControllerSettingsButton.Name = "ControllerSettingsButton";
-            this.ControllerSettingsButton.Size = new System.Drawing.Size(196, 51);
+            this.ControllerSettingsButton.Size = new System.Drawing.Size(294, 78);
             this.ControllerSettingsButton.TabIndex = 4;
             this.ControllerSettingsButton.Text = "Open Dolphin Interface";
             this.ControllerSettingsButton.UseVisualStyleBackColor = true;
@@ -58,28 +59,30 @@ namespace ShadowSXLauncher
             // UiButtonDisplayComboBox
             // 
             this.UiButtonDisplayComboBox.FormattingEnabled = true;
-            this.UiButtonDisplayComboBox.Location = new System.Drawing.Point(113, 58);
+            this.UiButtonDisplayComboBox.Location = new System.Drawing.Point(170, 89);
+            this.UiButtonDisplayComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UiButtonDisplayComboBox.Name = "UiButtonDisplayComboBox";
-            this.UiButtonDisplayComboBox.Size = new System.Drawing.Size(121, 21);
+            this.UiButtonDisplayComboBox.Size = new System.Drawing.Size(180, 28);
             this.UiButtonDisplayComboBox.TabIndex = 0;
             this.UiButtonDisplayComboBox.Text = "Steam Deck";
             this.UiButtonDisplayComboBox.SelectedValueChanged += new System.EventHandler(this.UiButtonDisplayComboBox_SelectedValueChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 61);
+            this.label1.Location = new System.Drawing.Point(18, 94);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 19);
+            this.label1.Size = new System.Drawing.Size(142, 29);
             this.label1.TabIndex = 3;
             this.label1.Text = "UI Buttons Display";
             // 
             // ShadowColorButton
             // 
             this.ShadowColorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShadowColorButton.Enabled = false;
-            this.ShadowColorButton.Location = new System.Drawing.Point(217, 117);
+            this.ShadowColorButton.Location = new System.Drawing.Point(326, 180);
+            this.ShadowColorButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ShadowColorButton.Name = "ShadowColorButton";
-            this.ShadowColorButton.Size = new System.Drawing.Size(95, 51);
+            this.ShadowColorButton.Size = new System.Drawing.Size(142, 78);
             this.ShadowColorButton.TabIndex = 5;
             this.ShadowColorButton.Text = "Customize Shadow Color\r\n";
             this.ShadowColorButton.UseVisualStyleBackColor = true;
@@ -88,41 +91,46 @@ namespace ShadowSXLauncher
             // GlossAdjustmentComboBox
             // 
             this.GlossAdjustmentComboBox.FormattingEnabled = true;
-            this.GlossAdjustmentComboBox.Location = new System.Drawing.Point(164, 85);
+            this.GlossAdjustmentComboBox.Location = new System.Drawing.Point(246, 131);
+            this.GlossAdjustmentComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GlossAdjustmentComboBox.Name = "GlossAdjustmentComboBox";
-            this.GlossAdjustmentComboBox.Size = new System.Drawing.Size(148, 21);
+            this.GlossAdjustmentComboBox.Size = new System.Drawing.Size(220, 28);
             this.GlossAdjustmentComboBox.TabIndex = 3;
             this.GlossAdjustmentComboBox.SelectedIndexChanged += new System.EventHandler(this.GlossAdjustmentComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 88);
+            this.label2.Location = new System.Drawing.Point(18, 135);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 23);
+            this.label2.Size = new System.Drawing.Size(214, 35);
             this.label2.TabIndex = 7;
             this.label2.Text = "Glossy Effecty on Characters";
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Location = new System.Drawing.Point(18, 14);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 17);
+            this.label3.Size = new System.Drawing.Size(142, 26);
             this.label3.TabIndex = 9;
             this.label3.Text = "SX ROM Location";
             // 
             // RomLocationTextBox
             // 
-            this.RomLocationTextBox.Location = new System.Drawing.Point(113, 6);
+            this.RomLocationTextBox.Location = new System.Drawing.Point(170, 9);
+            this.RomLocationTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RomLocationTextBox.Name = "RomLocationTextBox";
             this.RomLocationTextBox.ReadOnly = true;
-            this.RomLocationTextBox.Size = new System.Drawing.Size(168, 20);
+            this.RomLocationTextBox.Size = new System.Drawing.Size(250, 26);
             this.RomLocationTextBox.TabIndex = 10;
             // 
             // SetRomLocationButton
             // 
-            this.SetRomLocationButton.Location = new System.Drawing.Point(287, 4);
+            this.SetRomLocationButton.Location = new System.Drawing.Point(430, 6);
+            this.SetRomLocationButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SetRomLocationButton.Name = "SetRomLocationButton";
-            this.SetRomLocationButton.Size = new System.Drawing.Size(25, 23);
+            this.SetRomLocationButton.Size = new System.Drawing.Size(38, 35);
             this.SetRomLocationButton.TabIndex = 11;
             this.SetRomLocationButton.Text = "...";
             this.SetRomLocationButton.UseVisualStyleBackColor = true;
@@ -130,18 +138,19 @@ namespace ShadowSXLauncher
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(12, 38);
+            this.label5.Location = new System.Drawing.Point(18, 58);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 17);
+            this.label5.Size = new System.Drawing.Size(189, 26);
             this.label5.TabIndex = 13;
             this.label5.Text = "Dolphin Graphic Settings";
             // 
             // SettingsDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(324, 180);
+            this.ClientSize = new System.Drawing.Size(486, 277);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.SetRomLocationButton);
             this.Controls.Add(this.RomLocationTextBox);
@@ -155,6 +164,7 @@ namespace ShadowSXLauncher
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsDialog";
