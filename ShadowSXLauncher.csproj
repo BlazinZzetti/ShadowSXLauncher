@@ -128,6 +128,9 @@
     <Content Include="Resources\ShadowColorMask4.png" />
     <Content Include="Resources\ShadowColorMask5.png" />
     <Content Include="Resources\ShadowColorMask6.png" />
+    <Content Include="Resources\ShadowPreviewAccentMask.png" />
+    <Content Include="Resources\ShadowPreviewBase.png" />
+    <Content Include="Resources\ShadowPreviewMainMask.png" />
     <Content Include="Resources\S_SX_Launcher_Logo.png" />
   </ItemGroup>
   <ItemGroup>

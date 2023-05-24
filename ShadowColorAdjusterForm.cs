@@ -23,6 +23,10 @@ namespace ShadowSXLauncher
         private Image colorMask5;
         private Image colorMask6;
 
+        private Image previewImage;
+        private Image previewMainMask;
+        private Image previewAccentMask;
+
         private const string Image1Name = "tex1_128x128_6f6dc295fc576674_6.png";//Playable Shadow Main
         private const string Image2Name = "tex1_128x128_23470849ed473c96_9bcd3e8f93232964_8.png";//Playable Shadow Eye
         private const string Image3Name = "tex1_128x128_0a670a23d69f0145_d1f065a85855fcc6_8.png";//Event Shadow Main
@@ -51,13 +55,17 @@ namespace ShadowSXLauncher
             colorMask4 = Resources.ShadowColorMask4;
             colorMask5 = Resources.ShadowColorMask5;
             colorMask6 = Resources.ShadowColorMask6;
+
+            previewImage = Resources.ShadowPreviewBase;
+            previewMainMask = Resources.ShadowPreviewMainMask;
+            previewAccentMask = Resources.ShadowPreviewAccentMask;
             
-            PreviewPicture.Image = new Bitmap(baseImage1);
-            PreviewPicture2.Image = new Bitmap(baseImage2);
-            PreviewPicture3.Image = new Bitmap(baseImage3);
-            PreviewPicture4.Image = new Bitmap(baseImage4);
-            PreviewPicture5.Image = new Bitmap(baseImage1);
-            PreviewPicture6.Image = new Bitmap(baseImage5);
+            PreviewPicture.Image = new Bitmap(previewImage);
+            //PreviewPicture2.Image = new Bitmap(baseImage2);
+            //PreviewPicture3.Image = new Bitmap(baseImage3);
+            //PreviewPicture4.Image = new Bitmap(baseImage4);
+            //PreviewPicture5.Image = new Bitmap(baseImage1);
+            //PreviewPicture6.Image = new Bitmap(baseImage5);
         }
 
         private void InitColorControls()
@@ -67,34 +75,22 @@ namespace ShadowSXLauncher
 
         private void ApplyColorToPreviews()
         {
-            Image newImage = ApplyColorWithMask(true,  baseImage1, colorMask1, AccentColorPreview.BackColor);
-            newImage = ApplyColorWithMask(false,  newImage, colorMask3, MainColorPreview.BackColor);
+            Image preview = ApplyColorWithMask(true, previewImage, previewMainMask, MainColorPreview.BackColor);
+            preview = ApplyColorWithMask(true, preview, previewAccentMask, AccentColorPreview.BackColor);
 
-            Image newImage2 = ApplyColorWithMask(true,  baseImage2, colorMask2, AccentColorPreview.BackColor);
-            
-            Image newImage3 = ApplyColorWithMask(false,  baseImage3, colorMask4, MainColorPreview.BackColor);
-            newImage3 = ApplyColorWithMask(true,  newImage3, colorMask5, AccentColorPreview.BackColor);
-            
-            Image newImage4 = ApplyColorWithMask(true,  baseImage4, null, AccentColorPreview.BackColor);
-            
-            Image newImage5 = ApplyColorWithMask(true,  baseImage1, colorMask1, AccentColorPreview.BackColor);
-            newImage5 = ApplyColorWithMask(false,  newImage5, colorMask3, Color.Black);
-            
-            Image newImage6 = ApplyColorWithMask(true,  baseImage5, colorMask6, AccentColorPreview.BackColor);
-
-            PreviewPicture.Image = newImage;
-            PreviewPicture2.Image = newImage2;
-            PreviewPicture3.Image = newImage3;
-            PreviewPicture4.Image = newImage4;
-            PreviewPicture5.Image = newImage5;
-            PreviewPicture6.Image = newImage6;
+            PreviewPicture.Image = preview;
+            // PreviewPicture2.Image = newImage2;
+            // PreviewPicture3.Image = newImage3;
+            // PreviewPicture4.Image = newImage4;
+            // PreviewPicture5.Image = newImage5;
+            // PreviewPicture6.Image = newImage6;
             
             PreviewPicture.Refresh();
-            PreviewPicture2.Refresh();
-            PreviewPicture3.Refresh();
-            PreviewPicture4.Refresh();
-            PreviewPicture5.Refresh();
-            PreviewPicture6.Refresh();
+            // PreviewPicture2.Refresh();
+            // PreviewPicture3.Refresh();
+            // PreviewPicture4.Refresh();
+            // PreviewPicture5.Refresh();
+            // PreviewPicture6.Refresh();
             
             MainColorPreview.Refresh();
             AccentColorPreview.Refresh();
@@ -296,14 +292,29 @@ namespace ShadowSXLauncher
                 Directory.Delete(Application.StartupPath + filePathToShadowTextures, true);
             }
             Directory.CreateDirectory(Application.StartupPath + filePathToShadowTextures);
+            
+            Image newImage = ApplyColorWithMask(true,  baseImage1, colorMask1, AccentColorPreview.BackColor);
+            newImage = ApplyColorWithMask(false,  newImage, colorMask3, MainColorPreview.BackColor);
+
+            Image newImage2 = ApplyColorWithMask(true,  baseImage2, colorMask2, AccentColorPreview.BackColor);
+            
+            Image newImage3 = ApplyColorWithMask(false,  baseImage3, colorMask4, MainColorPreview.BackColor);
+            newImage3 = ApplyColorWithMask(true,  newImage3, colorMask5, AccentColorPreview.BackColor);
+            
+            Image newImage4 = ApplyColorWithMask(true,  baseImage4, null, AccentColorPreview.BackColor);
+            
+            Image newImage5 = ApplyColorWithMask(true,  baseImage1, colorMask1, AccentColorPreview.BackColor);
+            newImage5 = ApplyColorWithMask(false,  newImage5, colorMask3, Color.Black);
+            
+            Image newImage6 = ApplyColorWithMask(true,  baseImage5, colorMask6, AccentColorPreview.BackColor);
 
             
-            ((Bitmap)PreviewPicture.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image1Name, ImageFormat.Png);
-            ((Bitmap)PreviewPicture2.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image2Name, ImageFormat.Png);
-            ((Bitmap)PreviewPicture3.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image3Name, ImageFormat.Png);
-            ((Bitmap)PreviewPicture4.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image4Name, ImageFormat.Png);
-            ((Bitmap)PreviewPicture5.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image5Name, ImageFormat.Png);
-            ((Bitmap)PreviewPicture6.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image6Name, ImageFormat.Png);
+            /*((Bitmap)PreviewPicture.Image)*/newImage.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image1Name, ImageFormat.Png);
+            /*((Bitmap)PreviewPicture2.Image)*/newImage2.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image2Name, ImageFormat.Png);
+            /*((Bitmap)PreviewPicture3.Image)*/newImage3.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image3Name, ImageFormat.Png);
+            /*((Bitmap)PreviewPicture4.Image)*/newImage4.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image4Name, ImageFormat.Png);
+            /*((Bitmap)PreviewPicture5.Image)*/newImage5.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image5Name, ImageFormat.Png);
+            /*((Bitmap)PreviewPicture6.Image)*/newImage6.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image6Name, ImageFormat.Png);
 
             MessageBox.Show("Shadow Custom Textures created and saved at: " + filePathToShadowTextures);
         }
