@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 using ShadowSXLauncher.Properties;
 
@@ -289,17 +290,22 @@ namespace ShadowSXLauncher
 
         private void SaveImage_Click(object sender, EventArgs e)
         {
-            var fbd = new FolderBrowserDialog();
-            var result = fbd.ShowDialog();
-            if (result == DialogResult.OK)
+            var filePathToShadowTextures = @"\Dolphin-x64\User\Load\Textures\GUPX8P\Shadow";
+            if (Directory.Exists(Application.StartupPath + filePathToShadowTextures))
             {
-                ((Bitmap)PreviewPicture.Image).Save(fbd.SelectedPath + @"\" + Image1Name, ImageFormat.Png);
-                ((Bitmap)PreviewPicture2.Image).Save(fbd.SelectedPath + @"\" + Image2Name, ImageFormat.Png);
-                ((Bitmap)PreviewPicture3.Image).Save(fbd.SelectedPath + @"\" + Image3Name, ImageFormat.Png);
-                ((Bitmap)PreviewPicture4.Image).Save(fbd.SelectedPath + @"\" + Image4Name, ImageFormat.Png);
-                ((Bitmap)PreviewPicture5.Image).Save(fbd.SelectedPath + @"\" + Image5Name, ImageFormat.Png);
-                ((Bitmap)PreviewPicture6.Image).Save(fbd.SelectedPath + @"\" + Image6Name, ImageFormat.Png);
+                Directory.Delete(Application.StartupPath + filePathToShadowTextures, true);
             }
+            Directory.CreateDirectory(Application.StartupPath + filePathToShadowTextures);
+
+            
+            ((Bitmap)PreviewPicture.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image1Name, ImageFormat.Png);
+            ((Bitmap)PreviewPicture2.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image2Name, ImageFormat.Png);
+            ((Bitmap)PreviewPicture3.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image3Name, ImageFormat.Png);
+            ((Bitmap)PreviewPicture4.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image4Name, ImageFormat.Png);
+            ((Bitmap)PreviewPicture5.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image5Name, ImageFormat.Png);
+            ((Bitmap)PreviewPicture6.Image).Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image6Name, ImageFormat.Png);
+
+            MessageBox.Show("Shadow Custom Textures created and saved at: " + filePathToShadowTextures);
         }
 
         private void MainColorEditor_ColorChanged(object sender, EventArgs e)
