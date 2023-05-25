@@ -34,6 +34,9 @@ namespace ShadowSXLauncher
         private const string Image5Name = "tex1_128x128_ec9f785c3a033e72_ea84be987812412f_8.png";//Playable Super Shadow Main
         private const string Image6Name = "tex1_128x128_d690c7dc04b985c8_879d6817d5e22595_9.png";//Event Super Shadow Main
         
+        //Default Main Color #311c10
+        //Default Accent Color #DE0000
+        
         
         public ShadowColorAdjuster()
         {
