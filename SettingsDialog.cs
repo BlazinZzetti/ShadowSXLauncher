@@ -13,7 +13,22 @@ namespace ShadowSXLauncher
         {
             get { return Application.StartupPath + @"\Dolphin-x64"; }
         }
+
+        private string customTexturesPath
+        {
+            get { return dolphinPath + @"\User\Load\Textures\GUPX8P"; }
+        }
+
+        private string sxResourcesPath
+        {
+            get { return Application.StartupPath + @"\ShadowSXResources"; }
+        }
         
+        private string sxResourcesCustomTexturesPath
+        {
+            get { return sxResourcesPath + @"\CustomTextures\GUPX8P"; }
+        }
+
         public SettingsDialog()
         {
             InitializeComponent();
@@ -37,7 +52,6 @@ namespace ShadowSXLauncher
         private void UiButtonDisplayComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             Configuration.Instance.UiButtonDisplayIndex = UiButtonDisplayComboBox.SelectedIndex;
-            Configuration.Instance.SaveSettings();
         }
 
         private void ControllerSettingsButton_Click(object sender, EventArgs e)
@@ -62,7 +76,6 @@ namespace ShadowSXLauncher
         private void GlossAdjustmentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Configuration.Instance.GlossAdjustmentIndex = GlossAdjustmentComboBox.SelectedIndex;
-            Configuration.Instance.SaveSettings();
         }
 
         private void SetRomLocationButton_Click(object sender, EventArgs e)
@@ -99,6 +112,124 @@ namespace ShadowSXLauncher
                 }
             }
             RomLocationTextBox.Text = Configuration.Instance.RomLocation;
+        }
+
+        private void SaveSettingsButton_Click(object sender, EventArgs e)
+        {
+            Configuration.Instance.SaveSettings();
+            UpdateCustomAssets();
+        }
+        
+        private void UpdateCustomAssets()
+        {
+            // var gameSettings = new DolphinGameSettings(File.ReadAllText(gameSettingsFilePath));
+            // var geckoEnabledSection = gameSettings.Sections["Gecko_Enabled"];
+            // var modernUiString = "$SX - Modern UI Control";
+            // var disableSkipCutsceneString = "$SX - Restore Original Cutscene Skip";
+            // var raceModeString = "$SX - Enable Race Mode";
+            //
+            // #region Gecko Management
+            //
+            // if (geckoEnabledSection.Contains(modernUiString) != Configuration.Instance.UseModernUiControl)
+            // {
+            //     if (Configuration.Instance.UseModernUiControl)
+            //     {
+            //         //Add the time string needed to enable the feature.
+            //         geckoEnabledSection.Add(modernUiString);
+            //     }
+            //     else
+            //     {
+            //         //Remove the string the enables the feature.
+            //         var stringIndex = geckoEnabledSection.FindIndex(s=> s == modernUiString);
+            //         geckoEnabledSection.RemoveAt(stringIndex);
+            //     }
+            //
+            //     gameSettings.SaveSettings(gameSettingsFilePath);
+            // }
+            //
+            // if (geckoEnabledSection.Contains(disableSkipCutsceneString) != Configuration.Instance.DisableSkipCutscenes)
+            // {
+            //     if (Configuration.Instance.DisableSkipCutscenes)
+            //     {
+            //         //Add the time string needed to enable the feature.
+            //         geckoEnabledSection.Add(disableSkipCutsceneString);
+            //     }
+            //     else
+            //     {
+            //         //Remove the string the enables the feature.
+            //         var stringIndex = geckoEnabledSection.FindIndex(s=> s == disableSkipCutsceneString);
+            //         geckoEnabledSection.RemoveAt(stringIndex);
+            //     }
+            //
+            //     gameSettings.SaveSettings(gameSettingsFilePath);
+            // }
+            //
+            // if (geckoEnabledSection.Contains(raceModeString) != Configuration.Instance.RaceMode)
+            // {
+            //     if (Configuration.Instance.RaceMode)
+            //     {
+            //         //Add the time string needed to enable the feature.
+            //         geckoEnabledSection.Add(raceModeString);
+            //     }
+            //     else
+            //     {
+            //         //Remove the string the enables the feature.
+            //         var stringIndex = geckoEnabledSection.FindIndex(s=> s == raceModeString);
+            //         geckoEnabledSection.RemoveAt(stringIndex);
+            //     }
+            //
+            //     gameSettings.SaveSettings(gameSettingsFilePath);
+            // }
+            //
+            // #endregion
+
+            #region UI Display Textures
+
+            if (Directory.Exists(customTexturesPath + @"\Buttons"))
+            {
+                Directory.Delete(customTexturesPath + @"\Buttons", true);
+            }
+
+            var buttonAssetsFolder =
+                Configuration.UiButtonStyles.Keys.ToArray()[Configuration.Instance.UiButtonDisplayIndex];
+            if (!string.IsNullOrEmpty(buttonAssetsFolder))
+            {
+                var newButtonFilePath = sxResourcesCustomTexturesPath + @"\Buttons\" + buttonAssetsFolder;
+                var newButtonUiFiles = Directory.EnumerateFiles(newButtonFilePath);
+                
+                Directory.CreateDirectory(customTexturesPath + @"\Buttons");
+                
+                foreach (var buttonFile in newButtonUiFiles)
+                {
+                    File.Copy(buttonFile, customTexturesPath + @"\Buttons" + buttonFile.Replace(newButtonFilePath, ""));
+                }
+            }
+
+            #endregion
+            
+            #region Gloss Removal
+
+            if (Directory.Exists(customTexturesPath + @"\GlossAdjustment"))
+            {
+                Directory.Delete(customTexturesPath + @"\GlossAdjustment", true);
+            }
+
+            var glossAssetsFolder = 
+                Configuration.GlossAdjustmentOptions.Keys.ToArray()[Configuration.Instance.GlossAdjustmentIndex];
+            if (!string.IsNullOrEmpty(glossAssetsFolder))
+            {
+                var removeGlossFilePath = sxResourcesCustomTexturesPath + @"\GlossAdjustment\" + glossAssetsFolder;
+                var removeGlossFiles = Directory.EnumerateFiles(removeGlossFilePath);
+                
+                Directory.CreateDirectory(customTexturesPath + @"\GlossAdjustment");
+                
+                foreach (var removeGlossFile in removeGlossFiles)
+                {
+                    File.Copy(removeGlossFile, customTexturesPath + @"\GlossAdjustment" + removeGlossFile.Replace(removeGlossFilePath, ""));
+                }
+            }
+
+            #endregion
         }
     }
 }

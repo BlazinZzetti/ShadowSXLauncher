@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -34,10 +35,16 @@ namespace ShadowSXLauncher
         private const string Image5Name = "tex1_128x128_ec9f785c3a033e72_ea84be987812412f_8.png";//Playable Super Shadow Main
         private const string Image6Name = "tex1_128x128_d690c7dc04b985c8_879d6817d5e22595_9.png";//Event Super Shadow Main
         
-        //Default Main Color #311c10
-        //Default Accent Color #DE0000
-        
-        
+        private string dolphinPath
+        {
+            get { return Application.StartupPath + @"\Dolphin-x64"; }
+        }
+
+        private string customTexturesPath
+        {
+            get { return dolphinPath + @"\User\Load\Textures\GUPX8P"; }
+        }
+
         public ShadowColorAdjuster()
         {
             InitializeComponent();
@@ -64,15 +71,12 @@ namespace ShadowSXLauncher
             previewAccentMask = Resources.ShadowPreviewAccentMask;
             
             PreviewPicture.Image = new Bitmap(previewImage);
-            //PreviewPicture2.Image = new Bitmap(baseImage2);
-            //PreviewPicture3.Image = new Bitmap(baseImage3);
-            //PreviewPicture4.Image = new Bitmap(baseImage4);
-            //PreviewPicture5.Image = new Bitmap(baseImage1);
-            //PreviewPicture6.Image = new Bitmap(baseImage5);
         }
 
         private void InitColorControls()
         {
+            MainColorEditor.Color = Color.FromArgb(49,28,16); //#311c10
+            AccentColorEditor.Color = Color.FromArgb(222,0,0); //#DE0000
             ApplyColorToPreviews();
         }
 
@@ -82,19 +86,9 @@ namespace ShadowSXLauncher
             preview = ApplyColorWithMask(true, preview, previewAccentMask, AccentColorPreview.BackColor);
 
             PreviewPicture.Image = preview;
-            // PreviewPicture2.Image = newImage2;
-            // PreviewPicture3.Image = newImage3;
-            // PreviewPicture4.Image = newImage4;
-            // PreviewPicture5.Image = newImage5;
-            // PreviewPicture6.Image = newImage6;
             
             PreviewPicture.Refresh();
-            // PreviewPicture2.Refresh();
-            // PreviewPicture3.Refresh();
-            // PreviewPicture4.Refresh();
-            // PreviewPicture5.Refresh();
-            // PreviewPicture6.Refresh();
-            
+
             MainColorPreview.Refresh();
             AccentColorPreview.Refresh();
         }
@@ -289,12 +283,12 @@ namespace ShadowSXLauncher
 
         private void SaveImage_Click(object sender, EventArgs e)
         {
-            var filePathToShadowTextures = @"\Dolphin-x64\User\Load\Textures\GUPX8P\Shadow";
-            if (Directory.Exists(Application.StartupPath + filePathToShadowTextures))
+            var filePathToShadowTextures = customTexturesPath + @"\Shadow";
+            if (Directory.Exists(filePathToShadowTextures))
             {
-                Directory.Delete(Application.StartupPath + filePathToShadowTextures, true);
+                Directory.Delete(filePathToShadowTextures, true);
             }
-            Directory.CreateDirectory(Application.StartupPath + filePathToShadowTextures);
+            Directory.CreateDirectory(filePathToShadowTextures);
             
             Image newImage = ApplyColorWithMask(true,  baseImage1, colorMask1, AccentColorPreview.BackColor);
             newImage = ApplyColorWithMask(false,  newImage, colorMask3, MainColorPreview.BackColor);
@@ -312,14 +306,14 @@ namespace ShadowSXLauncher
             Image newImage6 = ApplyColorWithMask(true,  baseImage5, colorMask6, AccentColorPreview.BackColor);
 
             
-            /*((Bitmap)PreviewPicture.Image)*/newImage.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image1Name, ImageFormat.Png);
-            /*((Bitmap)PreviewPicture2.Image)*/newImage2.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image2Name, ImageFormat.Png);
-            /*((Bitmap)PreviewPicture3.Image)*/newImage3.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image3Name, ImageFormat.Png);
-            /*((Bitmap)PreviewPicture4.Image)*/newImage4.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image4Name, ImageFormat.Png);
-            /*((Bitmap)PreviewPicture5.Image)*/newImage5.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image5Name, ImageFormat.Png);
-            /*((Bitmap)PreviewPicture6.Image)*/newImage6.Save(Application.StartupPath + filePathToShadowTextures + @"\" + Image6Name, ImageFormat.Png);
+            newImage.Save(filePathToShadowTextures + @"\" + Image1Name, ImageFormat.Png);
+            newImage2.Save(filePathToShadowTextures + @"\" + Image2Name, ImageFormat.Png);
+            newImage3.Save(filePathToShadowTextures + @"\" + Image3Name, ImageFormat.Png);
+            newImage4.Save(filePathToShadowTextures + @"\" + Image4Name, ImageFormat.Png);
+            newImage5.Save(filePathToShadowTextures + @"\" + Image5Name, ImageFormat.Png);
+            newImage6.Save(filePathToShadowTextures + @"\" + Image6Name, ImageFormat.Png);
 
-            MessageBox.Show("Shadow Custom Textures created and saved at: " + filePathToShadowTextures);
+            MessageBox.Show("Shadow Custom Textures created and saved at: " + @"\Dolphin-x64\User\Load\Textures\GUPX8P\Shadow");
         }
 
         private void MainColorEditor_ColorChanged(object sender, EventArgs e)
@@ -332,6 +326,11 @@ namespace ShadowSXLauncher
         {
             UpdatePreviewColor(AccentColorPreview, AccentColorEditor.Color.R, AccentColorEditor.Color.G, AccentColorEditor.Color.B);
             ApplyColorToPreviews();
+        }
+
+        private void OpenCustomTexturesButton_Click(object sender, EventArgs e)
+        {
+            Process.Start(customTexturesPath);
         }
     }
 }
